@@ -6,3 +6,7 @@
 ```
 ## 디자인 시안
 <img src="./img/gachigong.png" />
+
+## 세부 페이지 설명
+### 메인 페이지 ( 홈 화면 )
+<img src="./img/gachigong_main.png" />
