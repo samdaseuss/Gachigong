@@ -1,0 +1,46 @@
+{{>layouts/header}}
+
+<button type="button" class="btb btn-primary"><a href="/root" style="color: white; text-decoration: none;">관리자</a></button>
+<a href="/member/logout">로그아웃</a>
+
+
+<table class="table">
+    <thead>
+    <tr>
+        <th scope="col">Subject</th>
+        <th scope="col">Color</th>
+        <th scope="col">Timer</th>
+    </tr>
+    </thead>
+    <tbody>
+    {{#timeList}}
+        <tr>
+            <th style="color:{{color}}">{{subject}}</th>
+            <td>{{color}}</td>
+            <td>
+                <div id="timer_{{id}}">00:00:00</div>
+                <div id="controls">
+                    <button onclick="startStop({{id}})">Start / Stop</button>
+                </div>
+            </td>
+        </tr>
+    {{/timeList}}
+    </tbody>
+</table>
+
+
+<form class="container" action="/studytime/add" method="post">
+    <div class="mb-3">
+        <label class="form-label">과목</label>
+        <input type="text" class="form-control" name="subject">
+    </div>
+    <div class="mb-3">
+        <label class="form-label">색상</label>
+        <input type='color' class="form-control" name="color" value='#0000ff'>
+    </div>
+    <button type="submit" class="btn btn-primary">추가</button>
+</form>
+
+
+<script src="/js/app/timer.js"></script>
+{{>layouts/footer}}
