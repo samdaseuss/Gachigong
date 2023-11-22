@@ -14,3 +14,5 @@
 ### 캘린더 및 계획 등록 페이지
 <img src="./img/gachigong_calendar.png" />
 
+### 스터디 그룹 상세 페이지
+<img src="./img/gachigong_detail_group.png" />
