@@ -43,17 +43,25 @@ public class GroupController {
     }
 
 
-    @GetMapping("/newGroup")
+    @GetMapping("/newgroup")
     public String showNewGroupForm(Model model) {
         GroupEntity group = new GroupEntity();
         model.addAttribute("group", group);
-        return "new_group";
+        return "newgroup";
     }
 
 
     @PostMapping("/group")
-    public String saveGroup(@ModelAttribute("group") GroupEntity group) {
-        groupService.saveGroup(group);
-        return "redirect:/group";
+    public String saveGroup(@ModelAttribute("group") GroupEntity group, Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("loginId");
+        if (userId != null) {
+            GroupEntity newGroup = groupService.saveGroup(group);
+            MemberEntity user = userService.findByMemberId(userId);
+            groupService.updateGroupOwner(user.getId(), newGroup.getId());
+            return "redirect:/group";
+        } else {
+            model.addAttribute("error", "로그인 후 이용해주세요.");
+            return "login";
+        }
     }
 }

@@ -1,0 +1,8 @@
+{{>layouts/header}}
+<h2>새 그룹 등록</h2>
+<form action="/group" method="POST">
+    <input type="text" name="groupName" placeholder="그룹이름" class="form-control mb-4 col-4">
+    <input type="text" name="groupIntro" placeholder="그룹소개" class="form-control mb-4 col-4">
+    <button type="submit" class="btn btn-info col-2"> 저장 </button>
+</form>
+{{>layouts/footer}}
