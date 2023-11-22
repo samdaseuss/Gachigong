@@ -1,8 +1,11 @@
-import com.example.studytime.dto;
+package com.third.gachigong.dto;
 
-import com.example.studytime.entity.GroupEntity;
-import com.example.studytime.entity.GroupMemberEntity;
+import com.third.gachigong.entity.GroupEntity;
+import com.third.gachigong.entity.GroupMemberEntity;
+import com.third.gachigong.entity.MemberEntity;
 import lombok.*;
+
+import java.util.List;
 
 @Getter
 @Setter
@@ -22,7 +25,7 @@ public class GroupDto {
         groupDto.setGroupName(groupEntity.getGroupName());
         groupDto.setGroupIntro(groupEntity.getGroupIntro());
         groupDto.setGroupOwner(groupEntity.getGroupOwner());
-        groupDto.setGroupMember(groupEntity.getGroupMember());
+        groupDto.setGroupMember(groupEntity.getGroupMembers());
         return groupDto;
     }
 }

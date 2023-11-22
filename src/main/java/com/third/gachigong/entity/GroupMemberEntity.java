@@ -1,6 +1,6 @@
-package com.example.studytime.entity;
+package com.third.gachigong.entity;
 
-import com.example.studytime.dto.GroupMemberDto;
+import com.third.gachigong.dto.GroupMemberDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -31,4 +31,5 @@ public class GroupMemberEntity {
         groupMemberEntity.setGroup(groupMemberDto.getGroup());
         return groupMemberEntity;
     }
+
 }

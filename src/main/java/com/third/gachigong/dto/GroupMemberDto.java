@@ -1,6 +1,8 @@
-package com.example.studytime.dto;
+package com.third.gachigong.dto;
 
-import com.example.studytime.entity.GroupMemberEntity;
+import com.third.gachigong.entity.GroupMemberEntity;
+import com.third.gachigong.entity.MemberEntity;
+import com.third.gachigong.entity.GroupEntity;
 import lombok.*;
 
 @Getter
@@ -10,14 +12,14 @@ import lombok.*;
 @ToString
 public class GroupMemberDto {
     private long groupMemberId;
-    private Member member;
-    private Group group;
+    private MemberEntity member;
+    private GroupEntity group;
 
     public static GroupMemberDto toGroupMemberDto(GroupMemberEntity groupMemberEntity){
         GroupMemberDto groupMemberDto = new GroupMemberDto();
-        groupMemberDto.setGroupMemberId(GroupMemberEntity.getGroupMemberId());
-        groupMemberDto.setMember(GroupMemberEntity.getMember());
-        groupMemberDto.setGroup(GroupMemberEntity.getGroup());
+        groupMemberDto.setGroupMemberId(groupMemberEntity.getGroupMemberId());
+        groupMemberDto.setMember(groupMemberEntity.getMember());
+        groupMemberDto.setGroup(groupMemberEntity.getGroup());
         return groupMemberDto;
     }
 }

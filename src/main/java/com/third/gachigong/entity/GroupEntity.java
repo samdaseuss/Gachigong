@@ -1,6 +1,6 @@
-package com.example.studytime.entity;
+package com.third.gachigong.entity;
 
-import com.example.studytime.dto.GroupDto;
+import com.third.gachigong.dto.GroupDto;
 import jakarta.persistence.*;
 import lombok.Getter;
 import lombok.Setter;
@@ -20,7 +20,7 @@ public class GroupEntity {
     private String groupName;
 
     @Column
-    private Sftring groupIntro;
+    private String groupIntro;
 
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="group_owner")
@@ -36,7 +36,8 @@ public class GroupEntity {
         groupEntity.setGroupName(groupDto.getGroupName());
         groupEntity.setGroupIntro(groupDto.getGroupIntro());
         groupEntity.setGroupOwner(groupDto.getGroupOwner());
-        groupEntity.setGroupMember(groupDto.getGroupMember());
+        groupEntity.setGroupMembers(groupDto.getGroupMember());
         return groupEntity;
     }
+
 }
