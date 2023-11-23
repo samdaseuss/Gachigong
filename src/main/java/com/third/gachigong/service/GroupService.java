@@ -7,6 +7,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -33,4 +34,12 @@ public class GroupService {
     // 소유자 정보 업데이트
     @Transactional
     public void updateGroupOwner(long userId, long groupId) { groupRepository.updateGroupOwner( userId, groupId); }
+
+    // 그룹 삭제
+    @Transactional
+    public void deleteGroup(long userId, long groupId) {
+        groupRepository.deleteByGroupOwnerId(userId, groupId);
+    }
+
+
 }

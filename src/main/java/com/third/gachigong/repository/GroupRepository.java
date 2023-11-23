@@ -1,7 +1,7 @@
 package com.third.gachigong.repository;
 
-import com.third.gachigong.entity.GroupEntity;
 import jakarta.transaction.Transactional;
+import com.third.gachigong.entity.GroupEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
@@ -22,4 +22,7 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
     @Query("SELECT g FROM GroupEntity g JOIN g.groupOwner go WHERE go.id = :userId")
     List<GroupEntity> findGroupInfoByUserId(@Param("userId") long userId );
 
+    @Modifying
+    @Query("DELETE FROM GroupEntity g WHERE g.groupOwner.id = :userId AND g.id = :groupId")
+    void deleteByGroupOwnerId(@Param("userId") Long userId, @Param("groupId") Long groupId);
 }

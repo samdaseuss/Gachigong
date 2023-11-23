@@ -8,9 +8,7 @@ import java.util.*;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 import jakarta.servlet.http.HttpSession;
 
 @Controller
@@ -62,6 +60,15 @@ public class GroupController {
         } else {
             model.addAttribute("error", "로그인 후 이용해주세요.");
             return "login";
+        }
+    }
+
+    @DeleteMapping("/group/{groupId}")
+    public void deleteGroup(@PathVariable Long groupId,HttpSession session) {
+        String userId = (String) session.getAttribute("loginId");
+        if (userId != null) {
+            MemberEntity user = userService.findByMemberId(userId);
+            groupService.deleteGroup(user.getId(), groupId);
         }
     }
 }
