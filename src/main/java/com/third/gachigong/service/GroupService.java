@@ -1,6 +1,7 @@
 package com.third.gachigong.service;
 
 import com.third.gachigong.entity.GroupEntity;
+import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.repository.GroupRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
@@ -41,5 +42,8 @@ public class GroupService {
         groupRepository.deleteByGroupOwnerId(userId, groupId);
     }
 
-
+    // 그룹 조회 ( by 그룹 아이디 )
+    public GroupEntity findByGroupId(long groupId) {
+        return groupRepository.findByGroupId(groupId);
+    }
 }

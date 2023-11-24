@@ -25,4 +25,8 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
     @Modifying
     @Query("DELETE FROM GroupEntity g WHERE g.groupOwner.id = :userId AND g.id = :groupId")
     void deleteByGroupOwnerId(@Param("userId") Long userId, @Param("groupId") Long groupId);
+
+    @Query("SELECT g FROM GroupEntity g WHERE g.id = :groupId")
+    GroupEntity findByGroupId(@Param("groupId") long groupId);
+
 }
