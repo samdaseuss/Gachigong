@@ -26,11 +26,22 @@ public class GroupController {
         String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
-            List<GroupEntity>
-                    myGroups = groupService.findGroupInfoByUserId(user.getId()),
+            List<GroupEntity> myGroups = groupService.findGroupInfoByUserId(user.getId()),
                     userGroups = groupService.getGroupsByUserId(user.getId()),
                     groupList = groupService.getAllGroups();
-            model.addAttribute("groupList", groupService.getAllGroups())
+
+            List<Map<String, Object>> groupListData = new ArrayList<>();
+
+            for (GroupEntity group : groupList) {
+                Map<String, Object> groupData = new HashMap<>();
+                groupData.put("groupData", Map.of(
+                        "groupName", (group.getGroupName() != null) ? group.getGroupName() : "",
+                        "groupIntro", (group.getGroupIntro() != null) ? group.getGroupIntro() : ""
+                ));
+                groupListData.add(groupData);
+            }
+            // 클라이언트로 전달
+            model.addAttribute("groupListData", groupListData)
                     .addAttribute("userGroups", groupService.getGroupsByUserId(user.getId()))
                     .addAttribute("myGroups", groupService.findGroupInfoByUserId(user.getId()));
             return "group";

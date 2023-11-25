@@ -14,9 +14,9 @@
 </head>
 <body>
 <!-- navigation -->
-<nav class="navbar navbar-expand-lg navbar-light bg-light">
+<nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
-        <a class="navbar-brand" href="#">가치공</a>
+        <a class="navbar-brand" href="/">가치공</a>
         <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
             <span class="navbar-toggler-icon"></span>
         </button>
@@ -33,10 +33,10 @@
                         그룹
                     </a>
                     <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
-                        <li><a class="dropdown-item" href="#">그룹 생성</a></li>
-                        <li><a class="dropdown-item" href="#">그룹 가입</a></li>
+                        <li><a class="dropdown-item" href="/newgroup">그룹 생성</a></li>
+                        <li><a class="dropdown-item" href="/group">그룹 가입</a></li>
                         <li><hr class="dropdown-divider"></li>
-                        <li><a class="dropdown-item" href="#">내 그룹</a></li>
+                        <li><a class="dropdown-item" href="/group">내 그룹</a></li>
                     </ul>
                 </li>
                 <li class="nav-item">
@@ -50,7 +50,12 @@
         </div>
     </div>
 </nav>
-
+<style>
+    body {
+        background-color: #FAFAFA;
+    }
+</style>
+</body>
 {{#msg}}
     <div class="alert alert-primary alert-dismissible">
         {{msg}} <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
