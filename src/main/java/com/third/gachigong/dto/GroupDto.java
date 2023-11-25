@@ -16,6 +16,7 @@ public class GroupDto {
     private long id;
     private String groupName;
     private String groupIntro;
+    private String groupPassword;
     private MemberEntity groupOwner;
     private List<GroupMemberEntity> groupMember;
 
@@ -24,6 +25,7 @@ public class GroupDto {
         groupDto.setId(groupEntity.getId());
         groupDto.setGroupName(groupEntity.getGroupName());
         groupDto.setGroupIntro(groupEntity.getGroupIntro());
+        groupDto.setGroupPassword(groupEntity.getGroupPassword());
         groupDto.setGroupOwner(groupEntity.getGroupOwner());
         groupDto.setGroupMember(groupEntity.getGroupMembers());
         return groupDto;

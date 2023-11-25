@@ -9,12 +9,15 @@ import com.third.gachigong.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
+import java.util.List;
+
 
 @Service
 @RequiredArgsConstructor
 public class GroupMemberService {
     private final GroupMemberRepository groupMemberRepository;
     private final MemberRepository memberRepository;
+
     public boolean saveGroupMember(MemberEntity user, GroupEntity group, long userId, long groupId) {
         // 이미 가입된 멤버인지 확인
         GroupMemberEntity groupMember = groupMemberRepository.findGroupMemberByUserIdAndGroupId(user.getId(), group.getId());
@@ -29,5 +32,8 @@ public class GroupMemberService {
             groupMemberRepository.save(newGroupMember);
             return true;
         }
+    }
+    public List<Object[]> findMemberDetailsByGroupId(long groupId) {
+        return groupMemberRepository.findMemberDetailsByGroupId(groupId);
     }
 }

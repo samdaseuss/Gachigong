@@ -32,6 +32,7 @@ public class GroupService {
     // 소유 그룹 조회
     public List<GroupEntity> findGroupInfoByUserId(long userId) { return groupRepository.findGroupInfoByUserId(userId); }
 
+
     // 소유자 정보 업데이트
     @Transactional
     public void updateGroupOwner(long userId, long groupId) { groupRepository.updateGroupOwner( userId, groupId); }
@@ -46,4 +47,11 @@ public class GroupService {
     public GroupEntity findByGroupId(long groupId) {
         return groupRepository.findByGroupId(groupId);
     }
+
+    // 그룹 조회 ( by 그룹 패스워드 )
+    public GroupEntity findByGroupPw(Long groupId, String groupPw) {
+        return groupRepository.findByGroupPw(groupId,groupPw);
+    }
+
+
 }

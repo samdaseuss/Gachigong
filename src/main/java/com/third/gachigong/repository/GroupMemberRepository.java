@@ -13,4 +13,7 @@ import java.util.List;
 public interface GroupMemberRepository extends JpaRepository<GroupMemberEntity, Long> {
     @Query("SELECT gm FROM GroupMemberEntity gm WHERE gm.member.id = :userId AND gm.group.id = :groupId")
     GroupMemberEntity findGroupMemberByUserIdAndGroupId(@Param("userId") Long userId, @Param("groupId") Long groupId);
+
+    @Query("SELECT gm FROM GroupMemberEntity gm INNER JOIN gm.member m WHERE gm.group.id = :groupId")
+    List<Object[]> findMemberDetailsByGroupId(@Param("groupId") Long groupId);
 }

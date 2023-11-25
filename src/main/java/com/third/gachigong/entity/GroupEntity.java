@@ -22,6 +22,9 @@ public class GroupEntity {
     @Column
     private String groupIntro;
 
+    @Column
+    private String groupPassword;
+
     @OneToOne(fetch = FetchType.LAZY)
     @JoinColumn(name="group_owner")
     private MemberEntity groupOwner;
@@ -34,6 +37,7 @@ public class GroupEntity {
         GroupEntity groupEntity = new GroupEntity();
         groupEntity.setId(groupDto.getId());
         groupEntity.setGroupName(groupDto.getGroupName());
+        groupEntity.setGroupPassword(groupDto.getGroupPassword());
         groupEntity.setGroupIntro(groupDto.getGroupIntro());
         groupEntity.setGroupOwner(groupDto.getGroupOwner());
         groupEntity.setGroupMembers(groupDto.getGroupMember());

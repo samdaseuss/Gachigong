@@ -29,4 +29,7 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
     @Query("SELECT g FROM GroupEntity g WHERE g.id = :groupId")
     GroupEntity findByGroupId(@Param("groupId") long groupId);
 
+    @Query("SELECT g FROM GroupEntity g WHERE g.id = :groupId AND g.groupPassword = :groupPw")
+    GroupEntity findByGroupPw(@Param("groupId") Long groupId, @Param("groupPw") String groupPw);
+
 }
