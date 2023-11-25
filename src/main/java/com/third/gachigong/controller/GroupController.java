@@ -58,10 +58,16 @@ public class GroupController {
 
 
     @GetMapping("/newgroup")
-    public String showNewGroupForm(Model model) {
-        GroupEntity group = new GroupEntity();
-        model.addAttribute("group", group);
-        return "newgroup";
+    public String showNewGroupForm(Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("loginId");
+        if (userId != null) {
+            GroupEntity group = new GroupEntity();
+            model.addAttribute("group", group);
+            return "newgroup";
+        } else {
+            model.addAttribute("error", "로그인 후 이용해주세요.");
+            return "login";
+        }
     }
 
 
