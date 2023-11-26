@@ -1,46 +1,129 @@
 {{>layouts/header}}
-
-<button type="button" class="btb btn-primary"><a href="/root" style="color: white; text-decoration: none;">관리자</a></button>
-<a href="/member/logout">로그아웃</a>
-
-
-<table class="table">
-    <thead>
-    <tr>
-        <th scope="col">Subject</th>
-        <th scope="col">Color</th>
-        <th scope="col">Timer</th>
-    </tr>
-    </thead>
-    <tbody>
-    {{#timeList}}
-        <tr>
-            <th style="color:{{color}}">{{subject}}</th>
-            <td>{{color}}</td>
-            <td>
-                <div id="timer_{{id}}">00:00:00</div>
-                <div id="controls">
-                    <button onclick="startStop({{id}})">Start / Stop</button>
+<div class="container-fluid mt-3">
+    <div class="row">
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <div class="main sec-1-container">
+                    <table>
+                        <tr><td><div class="main-date col-md-12">2023-08-11</div></td></tr>
+                        <tr><td><div class="main-timer col-md-12 sum-result">10:08:11</div></td></tr>
+                        <tr><td><div class="main-dday col-md-12">
+                            <div class="">D-30   중간고사</div>
+                            <div class="">D-60   팀프로젝트 발표</div>
+                            <div class="">D-100  정보처리기사 필기</div>
+                        </div></td></tr>
+                    </table>
                 </div>
-            </td>
-        </tr>
-    {{/timeList}}
-    </tbody>
-</table>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="main timerlog">
+                    <table class="table">
+                        <tbody>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
+                        </tbody>
 
-
-<form class="container" action="/studytime/add" method="post">
-    <div class="mb-3">
-        <label class="form-label">과목</label>
-        <input type="text" class="form-control" name="subject">
+                    </table>
+                </div>
+            </div>
+        </div>
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <div class="main timer">
+                    <div class="timer-pt1 col-md-12">
+                        <span>
+                            <h2>과목별 공부시간</h2>
+                        </span>
+                        <span>자세히보기</span>
+                        <img src="/img/img_3.png" alt="">
+                    </div>
+                        <div class="timer-list">
+                            <ul class="rank-des-ul">
+                                    <li class="rank-des-li">
+                                        <table>
+                                            <td><tr>-</tr></td>
+                                            <td><tr>네트워크보안</tr></td>
+                                            <td><tr>03:48:33</tr></td>
+                                        </table>
+                                    </li>
+                                <li class="rank-des-li">
+                                    <table>
+                                        <td><tr>-</tr></td>
+                                        <td><tr>네트워크보안</tr></td>
+                                        <td><tr>03:48:33</tr></td>
+                                    </table>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        <div class="col-md-4">
+            <div class="col-md-12">
+                <div class="main">
+                    <h2>참여중인 그룹</h2>
+                    <div class="main-list">
+                        <ul class="rank-des-ul">
+                            {{#userGroups}}
+                                <li class="rank-des-li">
+                                    <div class="row">
+                                        <div class="col-3">
+                                            <span><img class="group" src="/img/img.png" alt=""></span>
+                                        </div>
+                                        <div class="col-9 ml-4">
+                                            <div class="col-12 mt-2" style="font-size:12px">
+                                                <span>{{groupName}}</span>
+                                            </div>
+                                            <div class="col-12 mt-2" style="font-size:9px">
+                                                <span>{{groupIntro}}</span>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </li>
+                            {{/userGroups}}
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary d-grid gap-2" style="width: 95%;" type="button">+</button>
+                </div>
+            </div>
+            <div class="col-md-12 mt-3">
+                <div class="main">
+                    <h2>오늘의 할일</h2>
+                    <div class="main-list">
+                        <ul class="rank-des-ul">
+                                <li class="rank-des-li"></li>
+                        </ul>
+                    </div>
+                    <button class="btn btn-primary d-grid gap-2" style="width: 95%;" type="button">+</button>
+                </div>
+            </div>
+        </div>
     </div>
-    <div class="mb-3">
-        <label class="form-label">색상</label>
-        <input type='color' class="form-control" name="color" value='#0000ff'>
-    </div>
-    <button type="submit" class="btn btn-primary">추가</button>
-</form>
+</div>
 
 
 <script src="/js/app/timer.js"></script>
+<link rel="stylesheet" href="/css/main.css">
 {{>layouts/footer}}

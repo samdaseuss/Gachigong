@@ -1,0 +1,47 @@
+.main {
+    height: 320px;
+    background: #fff;
+    border: 1px solid #EDEDED;
+    border-radius: 10px;
+    padding: 5px;
+    position: relative;
+}
+.calendar img{
+    max-width: 100%;
+    max-height: 100%;
+}
+.date {
+   height: 650px;
+}
+.container-fluid { max-width: 700px }
+img {
+    max-width: 100%;
+    max-height: 100%;
+}
+table {
+    text-align: center;
+}
+.timer-list {
+            border: 2px solid #f8f8f8;
+            border-radius: 5px;
+            overflow-x: hidden;
+            max-height: 240px;
+            height: 400px;}
+.rank-des-ul {
+    padding: 5px;
+    list-style:none inside;}
+.rank-des-li {
+    border: 2px solid #f8f8f8;
+    border-radius: 5px;
+}
+.main-2 {
+    position: absolute;
+    bottom: 5px;
+}
+.main-1 {
+    position: relative;
+}
+.study-sum {
+position: absolute;
+    bottom: -100px;
+}

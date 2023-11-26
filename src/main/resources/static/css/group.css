@@ -8,7 +8,7 @@
         .joingroup-list {
             border: 2px solid #f8f8f8;
             border-radius: 5px;
-            overflow: auto;
+            overflow-x: hidden;
             max-height: 240px;
             height: 240px;}}
 .mygroup {
@@ -17,11 +17,12 @@
         background: #fff;
         border: 1px solid #EDEDED;
         border-radius: 10px;
+        overflow-x: hidden;
         padding: 5px;
         .mygroup-list {
             border: 2px solid #f8f8f8;
             border-radius: 5px;
-            overflow: auto;
+            overflow-x: auto;
             max-height: 130px;
             height: 130px;}}
 .rank {
@@ -31,9 +32,10 @@
     border-radius: 10px;
     padding: 5px;
     .rank-list {
+       height: 100%;
        border: 2px solid #f8f8f8;
        border-radius: 5px;
-       overflow: auto;
+       overflow-x: hidden;
        max-height: 550px;
        height: 550px;
     }
@@ -57,7 +59,8 @@ ol>li {
     counter-increment:item;
     list-style:none inside;
     margin-bottom:10px;
-    cursor: pointer;}
+    cursor: pointer;
+}
 
 ol>li:before {
     content: counter(item);

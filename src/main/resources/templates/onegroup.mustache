@@ -14,19 +14,12 @@
                             <input type="password" class="form-control" name="groupPassword" required>
                             <div class="form-text">비밀번호를 입력해주세요.</div>
                         </div>
-                        <button type="submit" class="btn btn-primary">입장하기</button>
+                        <button type="submit" class="btn btn-primary d-grid gap-2" style="width: 100%;">입장하기</button>
                     </form>
                 </div>
             </div>
         </div>
     </div>
 </div>
-
-
-{{#error}}
-    <script>
-        alert({{error}});
-    </script>
-{{/error}}
 
 {{>layouts/footer}}
