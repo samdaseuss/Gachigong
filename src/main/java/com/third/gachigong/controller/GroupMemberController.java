@@ -28,7 +28,7 @@ public class GroupMemberController {
     // 그룹 멤버 생성
     @PostMapping("/gmember")
     public String saveGroupMember(@ModelAttribute("groupMember") GroupMemberEntity groupMember, Model model, HttpSession session) {
-        long groupId = 1; // 임시값
+        long groupId = 1; // 임시값 ( 화면에 어떻게 넣어야 할 지 고민 중 )
         String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             // 그룹 찾기

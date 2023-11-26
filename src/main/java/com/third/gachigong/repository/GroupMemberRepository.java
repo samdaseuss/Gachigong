@@ -1,10 +1,7 @@
 package com.third.gachigong.repository;
 
-import com.third.gachigong.entity.GroupEntity;
 import com.third.gachigong.entity.GroupMemberEntity;
-import com.third.gachigong.entity.MemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
-import org.springframework.data.jpa.repository.Modifying;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
