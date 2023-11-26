@@ -118,9 +118,14 @@ public class GroupController {
         String userId = (String) session.getAttribute("loginId"); // 로그인 유저 정보
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
-            groupService.findByGroupPw(groupId,groupPassword);
-            redirectAttributes.addFlashAttribute("groupId", groupId);
-            return "redirect:/dgroup";
+            GroupEntity password = groupService.findByGroupPw(groupId,groupPassword);
+            if(password != null) {
+                redirectAttributes.addFlashAttribute("groupId", groupId);
+                return "redirect:/dgroup";
+            } else {
+                model.addAttribute("error", "비밀번호를 입력해주세요.");
+                return "redirect:/group";
+            }
         } else {
             System.out.println("로그인 후 이용해주세요.");
             model.addAttribute("error", "로그인 후 이용해주세요.");

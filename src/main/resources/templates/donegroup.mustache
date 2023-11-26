@@ -6,14 +6,13 @@
                 <div class="col-md-12">
                     <div class="joingroup">
                         <h1>참여중인 그룹</h1>
-                        <div class="joingroup-list">
-                            <ul class="rank-des-ul">
-                                {{groupId}}
-                                {{groupName}}
-                                {{groupIntro}}
-                            </ul>
-                        </div>
-                        <button class="btn btn-primary d-grid gap-2"  style="width: 95%;" type="button">+</button>
+                        <table style="text-align: center;">
+                            <tr>
+                                <td><img class=calendar-img src="/img/img_1.png" alt="이미지" style="width:200px; height: 200px"></td>
+                            </tr>
+                            <tr><td style="font-size: 25px">{{groupName}}</td></tr>
+                            <tr><td>{{groupIntro}}</td></tr>
+                        </table>
                     </div>
                 </div>
                 <div class="col-md-12 mt-3">
@@ -35,14 +34,10 @@
         <div class="col-md-6">
             <div class="rank">
                 <h1>오늘 공부 순위🔥</h1>
-                <div class="rank-list">
-                    <ol class="rank-des-ul">
-                    </ol>
-                </div>
+                "타이머 연계 부분"
             </div>
         </div>
     </div>
 </div>
 <link rel="stylesheet" href="/css/group.css">
-
 {{>layouts/footer}}
