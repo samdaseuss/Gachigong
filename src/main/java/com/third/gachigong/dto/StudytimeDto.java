@@ -4,9 +4,7 @@ import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.entity.StudytimeEntity;
 import lombok.*;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Getter
 @Setter
@@ -18,7 +16,7 @@ public class StudytimeDto {
     private MemberEntity member;
     private String subject;
     private String color;
-    private Duration studyTime;
+    private String studyTime;
     private LocalDate date = LocalDate.now();
 
     public StudytimeEntity toEntity(){
@@ -36,7 +34,6 @@ public class StudytimeDto {
 
     public static StudytimeDto toStudytimeDto(StudytimeEntity studytimeEntity){
         StudytimeDto studytimeDto = new StudytimeDto();
-        studytimeDto.setId(studytimeEntity.getId());
         studytimeDto.setMember(studytimeEntity.getMember());
         studytimeDto.setSubject(studytimeEntity.getSubject());
         studytimeDto.setColor(studytimeEntity.getColor());

@@ -53,33 +53,50 @@
             <div class="col-md-12">
                 <div class="main timer">
                     <div class="timer-pt1 col-md-12">
-                        <span>
-                            <h2>과목별 공부시간</h2>
-                        </span>
-                        <span>자세히보기</span>
+                        <div class="mt-2">
+                            <h3> 과목별 공부시간</h3>
+                        </div>
                         <img src="/img/img_3.png" alt="">
                     </div>
-                        <div class="timer-list">
-                            <ul class="rank-des-ul">
-                                    <li class="rank-des-li">
-                                        <table>
-                                            <td><tr>-</tr></td>
-                                            <td><tr>네트워크보안</tr></td>
-                                            <td><tr>03:48:33</tr></td>
-                                        </table>
-                                    </li>
-                                <li class="rank-des-li">
-                                    <table>
-                                        <td><tr>-</tr></td>
-                                        <td><tr>네트워크보안</tr></td>
-                                        <td><tr>03:48:33</tr></td>
-                                    </table>
-                                </li>
-                            </ul>
-                        </div>
+                    <div class="timer-list">
+                        <table class="table">
+                            <tbody>
+                            {{#timeList}}
+                                <tr>
+                                    <th style="color:{{color}}">{{subject}}</th>
+                                    <td>
+                                        <div id="timer_{{id}}">{{studyTime}}</div>
+                                        <div id="controls">
+                                            <button onclick="startStop({{id}})">Start / Stop</button>
+                                            <form id="form{{id}}" action="/studytime/upload/{{id}}" method="post">
+                                                <input type="hidden" id="studyTime_{{id}}" name="studyTime" value="{{studyTime}}">
+                                                <p class="text-error" id="nameErr"></p>
+                                                <p id="globalErr" class="text-error"></p>
+                                                <input type="button" value="등록" onclick="sendData({{id}})">
+                                            </form>
+                                        </div>
+                                    </td>
+                                </tr>
+                            {{/timeList}}
+                            </tbody>
+                        </table>
+
+
+                        <form class="container" action="/studytime/add" method="post">
+                            <div class="mb-3">
+                                <label class="form-label">과목</label>
+                                <input type="text" class="form-control" name="subject">
+                            </div>
+                            <div class="mb-3">
+                                <label class="form-label">색상</label>
+                                <input type='color' class="form-control" name="color" value='#0000ff'>
+                            </div>
+                            <button type="submit" class="btn btn-primary">추가</button>
+                        </form>
                     </div>
                 </div>
             </div>
+        </div>
         <div class="col-md-4">
             <div class="col-md-12">
                 <div class="main">
@@ -90,7 +107,7 @@
                                 <li class="rank-des-li">
                                     <div class="row">
                                         <div class="col-3">
-                                            <span><img class="group" src="/img/img.png" alt=""></span>
+                                            <span><img class="group" src="/img/img_1.png" alt=""></span>
                                         </div>
                                         <div class="col-9 ml-4">
                                             <div class="col-12 mt-2" style="font-size:12px">

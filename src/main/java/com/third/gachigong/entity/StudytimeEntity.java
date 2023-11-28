@@ -7,9 +7,7 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-import java.time.Duration;
 import java.time.LocalDate;
-import java.time.LocalDateTime;
 
 @Entity
 @Getter
@@ -33,14 +31,13 @@ public class StudytimeEntity {
     private String color;
 
     @Column(name = "study_time")
-    private Duration studyTime;
+    private String studyTime;
 
     @Column(name = "date")
     private LocalDate date;
 
     public static StudytimeEntity toStudytimeEntity(StudytimeDto studytimeDto){
         StudytimeEntity studytimeEntity = new StudytimeEntity();
-        studytimeEntity.setId(studytimeDto.getId());
         studytimeEntity.setMember(studytimeDto.getMember());
         studytimeEntity.setSubject(studytimeDto.getSubject());
         studytimeEntity.setColor(studytimeDto.getColor());

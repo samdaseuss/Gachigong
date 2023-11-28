@@ -54,7 +54,7 @@ public class StudytimeController {
         studytimeDto.setDate(LocalDate.now());
 
         StudytimeEntity studytimeEntity = studytimeDto.toEntity();
-        studytimeEntity.setStudyTime(Duration.parse("00:00:00"));
+        studytimeEntity.setStudyTime("00:00:00");
         log.info(studytimeEntity.toString());
 
         StudytimeEntity saved = studytimeRepository.save(studytimeEntity);
