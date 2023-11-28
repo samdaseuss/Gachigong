@@ -2,8 +2,9 @@ package com.third.gachigong.controller;
 
 import com.third.gachigong.dto.MemberDto;
 import com.third.gachigong.entity.MemberEntity;
-//import com.third.gachigong.entity.StudytimeEntity;
-//import com.third.gachigong.repository.StudytimeRepository;
+import com.third.gachigong.entity.StudytimeEntity;
+import com.third.gachigong.repository.StudytimeRepository;
+import com.third.gachigong.service.GroupService;
 import com.third.gachigong.service.MemberService;
 import jakarta.servlet.http.HttpSession;
 import lombok.RequiredArgsConstructor;
@@ -24,10 +25,14 @@ import java.util.stream.Collectors;
 @Controller
 @RequiredArgsConstructor
 public class MemberController {
-    private final MemberService memberService;
+    @Autowired
+    private MemberService memberService;
 
     @Autowired
-//    private StudytimeRepository studytimeRepository;
+    private GroupService groupService;
+
+    @Autowired
+    private StudytimeRepository studytimeRepository;
 
     @GetMapping("/login")
     public String loginForm(){
@@ -58,10 +63,11 @@ public class MemberController {
             session.setAttribute("loginId", loginResult.getMemberId());
 
             String loginId = (String) session.getAttribute("loginId");
-            System.out.println(loginId);
             MemberEntity memberEntity = memberService.findByMemberId(loginId);
-            //List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(memberEntity).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
-            //model.addAttribute("timeList", studytimeEntities);
+            List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(memberEntity).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
+
+            model.addAttribute("userGroups", groupService.getGroupsByUserId(memberEntity.getId()));
+            model.addAttribute("timeList", studytimeEntities);
             return "main";
         }else {
             return "login";
