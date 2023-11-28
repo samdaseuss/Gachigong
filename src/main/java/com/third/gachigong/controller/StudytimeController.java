@@ -19,6 +19,8 @@ import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
 
+import static com.third.gachigong.controller.MemberController.addTimes;
+
 @Slf4j
 @Controller
 public class StudytimeController {
@@ -63,7 +65,8 @@ public class StudytimeController {
         // DB에서 데이터 가져오기
         List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(memberEntity).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
 
-
+        model.addAttribute("today", LocalDate.now());
+        model.addAttribute("totalTime", addTimes(studytimeEntities));
         model.addAttribute("timeList", studytimeEntities);
         return "main";
     }
@@ -71,13 +74,9 @@ public class StudytimeController {
     @ResponseBody
     @PostMapping("/studytime/upload/{id}")
     public void uploadStudyTime(@PathVariable Long id, @Validated StudytimeDto studytimeDto) {
-        log.info("upload 호출");
-        log.info(studytimeDto.toString());
-
         StudytimeEntity studytimeEntity = studytimeService.findById(id);
         StudytimeEntity temp = StudytimeEntity.toStudytimeEntity(studytimeDto);
         studytimeEntity.setStudyTime(temp.getStudyTime());
-        log.info(studytimeEntity.toString());
 
         StudytimeEntity saved = studytimeRepository.save(studytimeEntity);
         log.info(saved.toString());

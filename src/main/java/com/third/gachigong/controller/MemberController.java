@@ -19,6 +19,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -67,6 +68,8 @@ public class MemberController {
             MemberEntity memberEntity = memberService.findByMemberId(loginId);
             List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(memberEntity).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
 
+            model.addAttribute("today", LocalDate.now());
+            model.addAttribute("totalTime", addTimes(studytimeEntities));
             model.addAttribute("userGroups", groupService.getGroupsByUserId(memberEntity.getId()));
             model.addAttribute("timeList", studytimeEntities);
             return "main";
@@ -85,11 +88,47 @@ public class MemberController {
 
             List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(user).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
             model.addAttribute("timeList", studytimeEntities);
+
+            model.addAttribute("today", LocalDate.now());
+            model.addAttribute("totalTime", addTimes(studytimeEntities));
             return "main";
         } else {
             return "login";
         }
     }
+
+
+    public static String addTimes(List<StudytimeEntity> studytimeEntities) {
+        ArrayList<String> times = new ArrayList<>();
+        for (StudytimeEntity s : studytimeEntities){
+            times.add(s.getStudyTime());
+        }
+        int totalHours = 0;
+        int totalMinutes = 0;
+        int totalSeconds = 0;
+
+        for (String time : times) {
+            String[] parts = time.split(":");
+            totalHours += Integer.parseInt(parts[0]);
+            totalMinutes += Integer.parseInt(parts[1]);
+            totalSeconds += Integer.parseInt(parts[2]);
+        }
+
+        totalMinutes += totalSeconds / 60;
+        totalSeconds %= 60;
+
+        totalHours += totalMinutes / 60;
+        totalMinutes %= 60;
+
+        // Formatting to ensure two digits for each part
+        String formattedHours = String.format("%02d", totalHours);
+        String formattedMinutes = String.format("%02d", totalMinutes);
+        String formattedSeconds = String.format("%02d", totalSeconds);
+
+        return formattedHours + ":" + formattedMinutes + ":" + formattedSeconds;
+    }
+
+
 
     //추후 그룹 매니저의 추방 기능 참고 (추후 여기서 뺄거임)
     @GetMapping("/root")
