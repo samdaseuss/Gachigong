@@ -1,0 +1,9 @@
+.relative {
+  display: flex;
+  height: 100%;
+  align-items: center;
+}
+
+.form-control {
+    font-size: 13px;
+}

@@ -75,7 +75,14 @@ public class GroupController {
             GroupEntity newGroup = groupService.saveGroup(group);
             MemberEntity user = userService.findByMemberId(userId);
             groupService.updateGroupOwner(user.getId(), newGroup.getId());
-            return "redirect:/group";
+            boolean saveGroupMember = groupMemberService.saveGroupMember(user,group,user.getId(),newGroup.getId());
+            if(saveGroupMember == true) {
+                model.addAttribute("success", "성공");
+                return "redirect:/group";
+            } else {
+                model.addAttribute("error", "이미 가입된 멤버입니다.");
+                return "redirect:/group";
+            }
         } else {
             model.addAttribute("error", "로그인 후 이용해주세요.");
             return "login";

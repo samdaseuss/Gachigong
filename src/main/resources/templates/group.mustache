@@ -5,20 +5,18 @@
             <div class="row">
                 <div class="col-md-12">
                     <div class="joingroup">
-                        <h1>참여중인 그룹</h1>
+                        <h2>참여중인 그룹</h2>
                         <div class="joingroup-list">
                             <ul class="rank-des-ul">
                                 {{#userGroups}}
                                     <li class="rank-des-li">
                                         <div class="row">
-                                            <div class="col-3">
-                                                <span><img class="group" src="/img/img.png" alt=""></span>
-                                            </div>
+                                            <div class="imgList col-3"></div>
                                             <div class="col-9 ml-4">
                                                 <div class="col-12 mt-2">
-                                                    <span>{{groupName}}</span>
+                                                    <span><b>{{groupName}}</b></span>
                                                 </div>
-                                                <div class="col-12 mt-2">
+                                                <div class="col-12 mt-2" style="font-size: 13px">
                                                     <span>{{groupIntro}}</span>
                                                 </div>
                                             </div>
@@ -27,25 +25,23 @@
                                 {{/userGroups}}
                             </ul>
                         </div>
-                        <button class="btn btn-primary d-grid gap-2" style="width: 95%;" type="button">+</button>
+                        <button class="btn btn-primary d-grid gap-2" style="border-color: #64C466; background-color: #64C466; color: white; width: 95%;" type="button">+</button>
                     </div>
                 </div>
                 <div class="col-md-12 mt-3">
                     <div class=mygroup>
-                        <h1>내가 만든 그룹</h1>
+                        <h2>내가 만든 그룹</h2>
                         <div class="mygroup-list">
                             <ul class="rank-des-ul">
                                 {{#myGroups}}
                                     <li class="rank-des-li">
                                         <div class="row">
-                                            <div class="col-3">
-                                                <span><img class="group" src="/img/img.png" alt=""></span>
-                                            </div>
+                                            <div class="imgList col-3"></div>
                                             <div class="col-9 ml-4">
                                                 <div class="col-12 mt-2">
-                                                    <span>{{groupName}}</span>
+                                                    <span><b>{{groupName}}</b></span>
                                                 </div>
-                                                <div class="col-12 mt-2">
+                                                <div class="col-12 mt-2" style="font-size: 13px">
                                                     <span>{{groupIntro}}</span>
                                                 </div>
                                             </div>
@@ -54,14 +50,14 @@
                                 {{/myGroups}}
                             </ul>
                         </div>
-                        <a href="/newgroup" class="btn btn-primary d-grid gap-2" style="width: 95%;" role="button">+</a>
+                        <a href="/newgroup" class="btn btn-primary d-grid gap-2" style="border-color: #64C466; background-color: #64C466; color: white; width: 95%;" role="button">+</a>
                     </div>
                 </div>
             </div>
         </div>
         <div class="col-md-6">
             <div class="rank">
-                <h1>실시간 그룹 랭킹(타이머 연계)🔥</h1>
+                <h2>전체 그룹 목록🔥</h2>
                 <div class="rank-list">
                     <ol class="rank-des-ul">
                         {{#groupListData}}
@@ -70,15 +66,13 @@
                                     <a href="/group/{{groupId}}" style="text-decoration: none; color: inherit;">
                                         <div class="row">
                                             <div class="col-1"></div>
-                                            <div class="col-3">
-                                                <span><img class="group" src="/img/img.png" alt="이미지"></span>
-                                            </div>
+                                            <div class="imgList col-3"></div>
                                             <div class="col-8">
                                                 <div class="col-12">
-                                                    <span>{{groupName}}</span>
+                                                    <span><b>{{groupName}}</b></span>
                                                 </div>
                                                 <div class="col-12">
-                                                    <span>{{groupIntro}}</span>
+                                                    <span style="font-size: 13px">{{groupIntro}}</span>
                                                 </div>
                                             </div>
                                         </div>
@@ -93,4 +87,5 @@
     </div>
 </div>
 <link rel="stylesheet" href="/css/group.css">
+<script src="/js/app/img.js"></script>
 {{>layouts/footer}}

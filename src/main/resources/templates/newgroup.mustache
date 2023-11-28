@@ -4,13 +4,25 @@
         <div class="col-md-6">
             <div class="row" style="background-color:white">
                 <div class="col-md-12">
-                    <h2>새 그룹 등록</h2>
+                    <br>
+                    <h1>새 그룹 등록</h1>
+                    <br>
                     <form action="/group" method="POST">
-                        <input type="text" name="groupName" placeholder="그룹이름" class="form-control mb-4 col-4">
-                        <input type="text" name="groupIntro" placeholder="그룹소개" class="form-control mb-4 col-4">
-                        <input type="password" name="groupPassword" placeholder="그룹 비밀번호" class="form-control mb-4 col-4">
-                        <button type="submit" class="btn btn-info col-2"> 저장 </button>
+                        <div class="mb-3">
+                            <label class="form-label">그룹 이름</label>
+                            <input type="text" name="groupName" placeholder="그룹이름을 입력해주세요." class="form-control mb-4 col-4">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">그룹 소개</label>
+                            <input type="text" name="groupIntro" placeholder="그룹소개를 입력해주세요." class="form-control mb-4 col-4">
+                        </div>
+                        <div class="mb-3">
+                            <label class="form-label">그룹 패스워드</label>
+                            <input type="password" name="groupPassword" placeholder="그룹 비밀번호를 입력해주세요." class="form-control mb-4 col-4">
+                        </div><br>
+                        <button type="submit" class="btn btn-primary d-grid gap-2" style="border-color: #64C466; background-color: #64C466; color: white; width: 100%;"> 신규 그룹으로 등록하기 </button>
                     </form>
+                    <br>
                 </div>
             </div>
         </div>

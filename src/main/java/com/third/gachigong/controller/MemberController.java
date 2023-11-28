@@ -1,6 +1,7 @@
 package com.third.gachigong.controller;
 
 import com.third.gachigong.dto.MemberDto;
+import com.third.gachigong.entity.GroupEntity;
 import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.entity.StudytimeEntity;
 import com.third.gachigong.repository.StudytimeRepository;
@@ -70,6 +71,22 @@ public class MemberController {
             model.addAttribute("timeList", studytimeEntities);
             return "main";
         }else {
+            return "login";
+        }
+    }
+
+    @GetMapping("/")
+    public String main(Model model, HttpSession session) {
+        String userId = (String) session.getAttribute("loginId");
+        if (userId != null) {
+            MemberEntity user = memberService.findByMemberId(userId);
+            List<GroupEntity> userGroups = groupService.getGroupsByUserId(user.getId());
+            model.addAttribute("userGroups", groupService.getGroupsByUserId(user.getId()));
+
+            List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(user).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
+            model.addAttribute("timeList", studytimeEntities);
+            return "main";
+        } else {
             return "login";
         }
     }

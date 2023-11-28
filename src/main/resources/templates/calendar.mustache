@@ -7,15 +7,51 @@
                     <span><img class="group" src="/img/img_2.png" alt="이미지"></span>
                 </div>
             </div>
-            <div class="col-12 mt-2">
-                <div class="main dday">
-                    <h2>예정된 할 일</h2>
+            <div class="col-md-12 mt-3">
+                <div class="todo">
+                    <div class="mt-2">
+                        <h3>예정된 할 일</h3>
+                    </div>
+                    <div class="todo-list">
+                        <ul class="todoLists rank-des-ul">
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><b>D-30</b></span>
+                                <span class="form-control">중간고사</span>
+                                <span class="input-group-text btn-info" style="color:white;">↻</span>
+                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><b>D-60</b></span>
+                                <span class="form-control">팀프로젝트 발표</span>
+                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;">↻</span>
+                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><b>D-100</b></span>
+                                <span class="form-control">정처기 필기</span>
+                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;">↻</span>
+                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
+                            </div>
+                            <div class="input-group mb-3">
+                                <span class="input-group-text"><b>D-200</b></span>
+                                <span class="form-control">정처기 실기</span>
+                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;">↻</span>
+                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
+                            </div>
+                        </ul>
+                    </div>
+                    <div class="input-field mt-2">
+                        <div class="input-group mb-3">
+                            <input type="text" class="form-control" placeholder="할 일을 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+                            <button class="btn" style="background-color: #64C466; color: white;" type="button" id="button-addon2">+</button>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
         <div class="main date col-6">
             <div class="main-1 col-12">
-                <div class="col-12"><div style="font-size: 25px">2023-08-11</div></div>
+                <div class="col-12"><div style="font-size: 25px"><b>2023-08-11</b></div></div>
                 <div class="col-12"><img class="group" src="/img/img_4.png" alt="이미지"></div>
                 <div class="study-sum col-12" style="text-align: center;">
                         총 공부시간<br>
@@ -27,7 +63,7 @@
                     <ul class="rank-des-ul">
                         <li class="rank-des-li">
                             <table>
-                                <td><tr>-</tr></td>
+                                <td><tr></tr></td>
                                 <td><tr>네트워크보안</tr></td>
                                 <td><tr>03:48:33</tr></td>
                             </table>
