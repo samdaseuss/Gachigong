@@ -13,13 +13,13 @@
 
 ## 세부 페이지 설명
 ### 메인 페이지 ( 홈 화면 )
-<img src="./img/gachigong_main.png" />
+<img width="400" src="./img/gachigong_main.png" />
 
 ### 캘린더 및 계획 등록 페이지
-<img src="./img/gachigong_calendar.png" />
+<img width="400" src="./img/gachigong_calendar.png" />
 
 ### 스터디 그룹 랭킹 페이지
-<img src="./img/gachigong_group.png" />
+<img width="400" src="./img/gachigong_group.png" />
 
 ### 스터디 그룹 상세 페이지
-<img src="./img/gachigong_detail_group.png" />
+<img width="400" src="./img/gachigong_detail_group.png" />
