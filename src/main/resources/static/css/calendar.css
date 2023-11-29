@@ -49,15 +49,17 @@ position: absolute;
     padding: 5px;
     list-style:none inside;}
 .todo {
-            height: 310px;
-            position: relative;
-            background: #fff;
-            border: 1px solid #EDEDED;
-            border-radius: 10px;
-            padding: 5px;
-            .todo-list {
-                border: 2px solid #f8f8f8;
-                border-radius: 5px;
-                overflow: auto;
-                max-height: 200px;
-                height: 200px;}}
+       height: 310px;
+       position: relative;
+       background: #fff;
+       border: 1px solid #EDEDED;
+       border-radius: 10px;
+       padding: 5px;
+       .todo-list {
+            border: 2px solid #f8f8f8;
+            border-radius: 5px;
+            overflow: auto;
+            max-height: 200px;
+            height: 200px;
+       }
+}

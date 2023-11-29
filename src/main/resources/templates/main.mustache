@@ -5,8 +5,8 @@
             <div class="col-md-12">
                 <div class="main sec-1-container">
                     <table>
-                        <tr><td><div class="main-date col-md-12" id="today"><b>{{today}}</b></div></td></tr>
-                        <tr><td><div class="main-timer col-md-12 sum-result" id="totalTime"><b style="color:#EA4D3D">{{totalTime}}</b></div></td></tr>
+                        <tr><td><div id="today" class="main-date col-md-12"><b>{{today}}</b></div></td></tr>
+                        <tr><td><div id="totalTime" class="main-timer col-md-12 sum-result" style="color:#EA4D3D;"><b>{{totalTime}}</b></div></td></tr>
                         <tr><td><div class="main-dday col-md-12">
                             <div class=""><b>D-30</b>   중간고사</div>
                             <div class=""><b>D-60</b>   팀프로젝트 발표</div>
@@ -64,28 +64,22 @@
                                     <div class="col-md-3"></div>
                                 </div>
                             </div>
-
-                            <table class="table">
-                                <tbody>
                                 {{#timeList}}
-                                    <tr>
-                                        <th style="color:{{color}}">{{subject}}</th>
-                                        <td>
-                                            <div id="timer_{{id}}">{{studyTime}}</div>
-                                            <div id="controls">
-                                                <button onclick="startStop({{id}})">Start / Stop</button>
-                                                <form id="form{{id}}" action="/studytime/upload/{{id}}" method="post">
-                                                    <input type="hidden" id="studyTime_{{id}}" name="studyTime" value="{{studyTime}}">
-                                                    <p class="text-error" id="nameErr"></p>
-                                                    <p id="globalErr" class="text-error"></p>
-                                                    <input type="button" value="등록" onclick="sendData({{id}})">
-                                                </form>
-                                            </div>
-                                        </td>
-                                    </tr>
+                                <li class="rank-des-li">
+                                    <div class="row">
+                                        <div class="col-2 m-1" id="controls"><button data-id="{{id}}" onclick="startStop({{id}});"><b>▶︎</b></button></div>
+                                        <div class="col-4 m-1" ><b>{{subject}}</b></div>
+                                <div class="col-4 mt-1" id="controls">
+                                    <div id="timer_{{id}}"><b>{{studyTime}}</b></div>
+                                    <form id="form{{id}}" action="/studytime/upload/{{id}}" method="post">
+                                        <input type="hidden" id="studyTime_{{id}}" name="studyTime" value="{{studyTime}}">
+                                        <p class="text-error" id="nameErr"></p>
+                                        <p id="globalErr" class="text-error"></p>
+                                    </form>
+                                </div>
+                                    </div>
+                                </li>
                                 {{/timeList}}
-                                </tbody>
-                            </table>
                         </div>
                     <form class="container" action="/studytime/add" method="post">
                         <div class="mb-1 row">

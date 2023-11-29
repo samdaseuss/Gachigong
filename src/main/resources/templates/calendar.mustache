@@ -14,48 +14,41 @@
                     </div>
                     <div class="todo-list">
                         <ul class="todoLists rank-des-ul">
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><b>D-30</b></span>
-                                <span class="form-control">중간고사</span>
-                                <span class="input-group-text btn-info" style="color:white;">↻</span>
-                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><b>D-60</b></span>
-                                <span class="form-control">팀프로젝트 발표</span>
-                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;">↻</span>
-                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><b>D-100</b></span>
-                                <span class="form-control">정처기 필기</span>
-                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;">↻</span>
-                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
-                            </div>
-                            <div class="input-group mb-3">
-                                <span class="input-group-text"><b>D-200</b></span>
-                                <span class="form-control">정처기 실기</span>
-                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;">↻</span>
-                                <span class="input-group-text btn-danger" onclick="deleteTask(e)">X</span>
-                            </div>
+                            {{#lists}}
+                            <li class="rank-des-li">
+                            <Form action="/dday" method="post" class="input-group mb-3">
+                                <input type="text" name="content" class="form-control" value="{{content}}">
+                                <input type="date" class="form-control"name="date" style="display: none;">
+                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;" type="submit">↻</span>
+                                <span class="input-group-text btn-danger" onclick="deleteTask('{{id}}')">X</span>
+                            </Form>
+                            </li>
+                            {{/lists}}
                         </ul>
                     </div>
-                    <div class="input-field mt-2">
-                        <div class="input-group mb-3">
-                            <input type="text" class="form-control" placeholder="할 일을 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn" style="background-color: #64C466; color: white;" type="button" id="button-addon2">+</button>
+                    <form class="container" action="/dday" method="post">
+                        <div class="mb-3">
+                            <input type="date" class="form-control"name="date" placeholder="날짜를 입력해주세요.">
                         </div>
-                    </div>
+                        <div class="input-field mt-2">
+                            <div class="input-group mb-3">
+                                <input type="text" name="content" class="form-control" placeholder="할 일을 입력해주세요.">
+                                <button class="submit" style="background-color: #64C466; color: white;" type="button" id="button-addon2">+</button>
+                            </div>
+                        </div>
+<!--                        <div class="mb-3"><input type="text" name="content" class="form-control" placeholder="할 일을 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2"></div>-->
+<!--                        <button type="submit" class="btn" style="border-color: #64C466; background-color: #64C466; color: white; width: 100%;"> + </button>-->
+                    </form>
                 </div>
             </div>
         </div>
         <div class="main date col-6">
             <div class="main-1 col-12">
-                <div class="col-12"><div style="font-size: 25px"><b>2023-08-11</b></div></div>
+                <div class="col-12"><div style="font-size: 25px"><b>{{today}}</b></div></div>
                 <div class="col-12"><img class="group" src="/img/img_4.png" alt="이미지"></div>
                 <div class="study-sum col-12" style="text-align: center;">
                         총 공부시간<br>
-                        <p style="font-size: 30px">10:08:11</p>
+                        <p style="font-size: 30px">{{totalTime}}</p>
                 </div>
             </div>
             <div class="main-2 col-12">
@@ -82,4 +75,5 @@
     </div>
 </div>
 <link rel="stylesheet" href="/css/calendar.css">
+<script src="/js/app/task.js"></script>
 {{>layouts/footer}}

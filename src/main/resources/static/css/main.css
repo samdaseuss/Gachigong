@@ -74,6 +74,7 @@ table {
 .rank-des-li {
     border: 2px solid #f8f8f8;
     border-radius: 5px;
+     list-style:none inside;
 }
 .circle {
     /*display: inline-block;*/
@@ -89,3 +90,12 @@ table {
     height: 100%;
 }
 input{ width:100%;}
+
+#controls button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #5A5A5A;
+    color: white;
+    border: none;
+}
