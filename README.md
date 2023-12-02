@@ -7,7 +7,7 @@
 ## 디자인 시안
 <img src="./img/gachigong.png" />
 
-## ERD
+## 데이터 모델 다이어그램 (ERD)
 <img width="200" src="./img/erd.png" />
 
 
