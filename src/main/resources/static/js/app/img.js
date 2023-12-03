@@ -11,7 +11,7 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.imgList.col-3').forEach(function(imageContainer) {
         const randomImageUrl = imageUrls[Math.floor(Math.random() * imageUrls.length)];
         const imgElement = document.createElement('img');
-        imgElement.classList.add('group'); // 클래스 추가
+        imgElement.classList.add('group');
         imgElement.src = randomImageUrl;
         imgElement.alt = '이미지';
 

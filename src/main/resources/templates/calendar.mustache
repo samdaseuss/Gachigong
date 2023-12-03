@@ -4,10 +4,29 @@
         <div class="col-6">
             <div class="col-12">
                 <div class="main calendar">
-                    <span><img class="group" src="/img/img_2.png" alt="이미지"></span>
+                    <div class="nav">
+                        <p class="current-date"></p>
+                        <div class="icons">
+                            <span id="prev" class="material-symbols-rounded">◀</span>
+                            <span id="next" class="material-symbols-rounded">▶</span>
+                        </div>
+                    </div>
+                    <div class="calendar">
+                        <ul class="weeks">
+                            <li>Sun</li>
+                            <li>Mon</li>
+                            <li>Tue</li>
+                            <li>Wed</li>
+                            <li>Thu</li>
+                            <li>Fri</li>
+                            <li>Sat</li>
+                        </ul>
+                        <ul class="days"></ul>
+                    </div>
                 </div>
             </div>
             <div class="col-md-12 mt-3">
+
                 <div class="todo">
                     <div class="mt-2">
                         <h3>예정된 할 일</h3>
@@ -15,14 +34,13 @@
                     <div class="todo-list">
                         <ul class="todoLists rank-des-ul">
                             {{#lists}}
-                            <li class="rank-des-li">
-                            <Form action="/dday" method="post" class="input-group mb-3">
-                                <input type="text" name="content" class="form-control" value="{{content}}">
-                                <input type="date" class="form-control"name="date" style="display: none;">
-                                <span class="input-group-text" style="background-color:#5AC4F6; color:white;" type="submit">↻</span>
-                                <span class="input-group-text btn-danger" onclick="deleteTask('{{id}}')">X</span>
-                            </Form>
-                            </li>
+                                <li class="rank-des-li">
+                                    <Form action="/dday" method="post" class="input-group mb-3">
+                                        <input type="text" name="content" class="form-control" value="{{content}}">
+                                        <input type="date" class="form-control"name="date" style="display: none;">
+                                        <span class="input-group-text btn-danger" onclick="sendDeleteRequest({{id}})">X</span>
+                                    </Form>
+                                </li>
                             {{/lists}}
                         </ul>
                     </div>
@@ -32,41 +50,37 @@
                         </div>
                         <div class="input-field mt-2">
                             <div class="input-group mb-3">
-                                <input type="text" name="content" class="form-control" placeholder="할 일을 입력해주세요.">
-                                <button class="submit" style="background-color: #64C466; color: white;" type="button" id="button-addon2">+</button>
+                                <input type="text" class="form-control" id="contentInput" name="content" placeholder="할 일을 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2">
+                                <button class="btn" style="background-color: #64C466; color: white;" type="submit" id="button-addon2" >+</button>
                             </div>
                         </div>
-<!--                        <div class="mb-3"><input type="text" name="content" class="form-control" placeholder="할 일을 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2"></div>-->
-<!--                        <button type="submit" class="btn" style="border-color: #64C466; background-color: #64C466; color: white; width: 100%;"> + </button>-->
                     </form>
                 </div>
             </div>
         </div>
         <div class="main date col-6">
             <div class="main-1 col-12">
-                <div class="col-12"><div style="font-size: 25px"><b>{{today}}</b></div></div>
-                <div class="col-12"><img class="group" src="/img/img_4.png" alt="이미지"></div>
+                <div class="col-12"><div class="bring-date" style="font-size: 25px"></div></div>
+                <div class="col-12"><img id="timeImage" class="group" src="/img/img_4.png" alt=""></div>
                 <div class="study-sum col-12" style="text-align: center;">
-                        총 공부시간<br>
-                        <p style="font-size: 30px">{{totalTime}}</p>
+                    <b>총 공부시간</b><br>
+                    <div id="totalTime" class="main-timer col-md-12 sum-result" style="color:#EA4D3D;font-size:40px;"><b>{{totalTime}}</b></div>
                 </div>
             </div>
             <div class="main-2 col-12">
                 <div class="timer-list">
                     <ul class="rank-des-ul">
                         <li class="rank-des-li">
-                            <table>
-                                <td><tr></tr></td>
-                                <td><tr>네트워크보안</tr></td>
-                                <td><tr>03:48:33</tr></td>
-                            </table>
-                        </li>
-                        <li class="rank-des-li">
-                            <table>
-                                <td><tr>-</tr></td>
-                                <td><tr>네트워크보안</tr></td>
-                                <td><tr>03:48:33</tr></td>
-                            </table>
+                            {{#timeList}}
+                            <li class="rank-des-li">
+                                    <div class="row">
+                                        <div class="col-4 m-1" style="color:{{color}}"><b>{{subject}}</b></div>
+                                        <div class="col-4 mt-1" id="controls">
+                                            <div id="timer_{{id}}" style="font-weight: bold">{{studyTime}}</div>
+                                        </div>
+                                    </div>
+                            <li class="rank-des-li">
+                            {{/timeList}}
                         </li>
                     </ul>
                 </div>
@@ -74,6 +88,9 @@
         </div>
     </div>
 </div>
-<link rel="stylesheet" href="/css/calendar.css">
 <script src="/js/app/task.js"></script>
+<script src="/js/app/timer.js"></script>
+<script src="/js/app/calendar_script.js"></script>
+<link rel="stylesheet" href="/css/calendar.css">
+<link rel="stylesheet" href="/css/calendar_style.css" />
 {{>layouts/footer}}

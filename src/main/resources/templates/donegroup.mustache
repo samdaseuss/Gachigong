@@ -6,11 +6,11 @@
                 <div class="col-md-12">
                     <div class="joingroup">
                         <h1>참여중인 그룹</h1>
-                        <table style="text-align: center;">
+                        <table>
                             <tr>
-                                <td><img class=calendar-img src="/img/img_1.png" alt="이미지" style="width:200px; height: 200px"></td>
+                                <td rowspan="2"><img class=calendar-img src="/img/img_1.png" alt="이미지"></td>
+                                <td style="font-size: 18px"><b>{{groupName}}</b></td>
                             </tr>
-                            <tr><td style="font-size: 25px">{{groupName}}</td></tr>
                             <tr><td>{{groupIntro}}</td></tr>
                         </table>
                     </div>
@@ -34,7 +34,13 @@
         <div class="col-md-6">
             <div class="rank">
                 <h1>오늘 공부 순위🔥</h1>
-                "타이머 연계 부분"
+                <ol class="rank-des-ul">
+                {{#groupMemberRank}}
+                    <li class="list-group-item">
+                            {{studytime}} {{membername}}
+                    </li>
+                {{/groupMemberRank}}
+                </ol>
             </div>
         </div>
     </div>

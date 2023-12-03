@@ -39,7 +39,7 @@ img {
     max-height:100%;
 }
 .sec-1-container {
-    height: 200px;
+    height: 650px;
     display:flex;
     justify-content: center;
 }
@@ -99,3 +99,6 @@ input{ width:100%;}
     color: white;
     border: none;
 }
+.bg-custom {
+    background-color: #64C466;
+    }

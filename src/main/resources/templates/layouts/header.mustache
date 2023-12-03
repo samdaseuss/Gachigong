@@ -10,9 +10,25 @@
     <script src="https://cdnjs.cloudflare.com/ajax/libs/mustache.js/4.2.0/mustache.min.js"></script>
     <script src="https://code.jquery.com/jquery-3.6.4.min.js"></script>
 
-    <title>StudyTimer</title>
+    <title>StudyTime</title>
 </head>
 <body>
+<script>
+    document.addEventListener("DOMContentLoaded", function() {
+        var t = new Date();
+        var dd = String(t.getDate()).padStart(2, '0');
+        var mm = String(t.getMonth() + 1).padStart(2, '0'); // January is 0!
+        var yyyy = t.getFullYear();
+
+        t = yyyy + '-' + mm + '-' + dd;
+        t = t.toString();
+
+        var todayCalendar = document.getElementById("todayCalendar");
+
+        todayCalendar.href = "/calendar/" + t;
+    });
+</script>
+
 <!-- navigation -->
 <nav class="navbar navbar-expand-lg navbar-light bg-white">
     <div class="container-fluid">
@@ -26,7 +42,7 @@
                     <a class="nav-link active" aria-current="page" href="/member/logout">로그아웃</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="/calendar">캘린더</a>
+                    <a id="todayCalendar" class="nav-link" href="#">캘린더</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-bs-toggle="dropdown" aria-expanded="false">
@@ -38,7 +54,7 @@
                     </ul>
                 </li>
                 <li class="nav-item">
-<!--                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">그룹 랭킹</a>-->
+                    <a class="nav-link disabled" href="#" tabindex="-1" aria-disabled="true">그룹 랭킹</a>
                 </li>
             </ul>
             <form class="d-flex">
@@ -48,11 +64,14 @@
         </div>
     </div>
 </nav>
+
 <style>
     body {
         background-color: #FAFAFA;
     }
 </style>
+
+
 </body>
 {{#msg}}
     <div class="alert alert-primary alert-dismissible">

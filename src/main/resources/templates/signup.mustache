@@ -5,21 +5,41 @@
         <p>{{error}}</p>
     </div>
 {{/error}}
+<div class="container mt-4">
+    <div class="row justify-content-center">
+        <div class="col-md-6 login-form">
+            <div class="row">
+                <div class="int-area">
+                    <br>
+                    <h1>회원가입</h1>
+                    <br>
+                    <form class="container" action="/member/signup" method="post">
+                        <div class="mb-3 int-area ">
+                            <div class="form-label ">
+                                <span class="far fa-user"></span>
+                            </div>
+                            <input type="text" class="form-control" name="memberId" placeholder="아이디">
+                        </div>
+                        <div class="mb-3 int-area ">
+                            <div class="form-label ">
+                                <span class="fas fa-lock" style="opacity: 0.7;"></span>
+                            </div>
+                            <input type="password" class="form-control" name="memberPw" placeholder="비밀번호">
+                        </div>
+                        <div class="mb-3 int-area ">
+                            <div class="form-label ">
+                                <span class="far fa-user-circle"></span>
+                            </div>
+                            <input type="text" class="form-control" name="memberName" placeholder="닉네임">
+                        </div>
+                        <button type="submit" class="btn btn-primary" style="border-color: #64C466; background-color: #64C466; color: white; width: 100%;">회원가입</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
 
-<form class="container" action="/member/signup" method="post">
-    <div class="mb-3">
-        <label class="form-label">아이디</label>
-        <input type="text" class="form-control" name="memberId">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">비밀번호</label>
-        <input type="password" class="form-control" name="memberPw">
-    </div>
-    <div class="mb-3">
-        <label class="form-label">이름</label>
-        <input type="text" class="form-control" name="memberName">
-    </div>
-    <button type="submit" class="btn btn-primary">회원가입</button>
-</form>
 
+<link rel="stylesheet" href="/css/login.css">
 {{>layouts/footer}}

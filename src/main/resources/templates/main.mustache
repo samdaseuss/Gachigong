@@ -7,44 +7,13 @@
                     <table>
                         <tr><td><div id="today" class="main-date col-md-12"><b>{{today}}</b></div></td></tr>
                         <tr><td><div id="totalTime" class="main-timer col-md-12 sum-result" style="color:#EA4D3D;"><b>{{totalTime}}</b></div></td></tr>
-                        <tr><td><div class="main-dday col-md-12">
-                            <div class=""><b>D-30</b>   중간고사</div>
-                            <div class=""><b>D-60</b>   팀프로젝트 발표</div>
-                            <div class=""><b>D-100</b>  정보처리기사 필기</div>
-                        </div></td></tr>
-                    </table>
-                </div>
-            </div>
-            <div class="col-md-12 mt-3">
-                <div class="main timerlog">
-                    <table class="table">
-                        <tbody>
-                        <tr style="background-color: #64C466;"><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td><td style="background-color: #64C466;"></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        <tr><td></td><td></td><td></td><td></td><td></td><td></td></tr>
-                        </tbody>
-
+                        <tr><td>
+                            <div class="main-dday col-md-12">
+                                {{#ddayList}}
+                                    <div>D-<b id="originalDate">{{ddayValue}}</b>{{ddayContent}}</div>
+                                {{/ddayList}}
+                            </div>
+                        </td></tr>
                     </table>
                 </div>
             </div>
@@ -68,9 +37,9 @@
                                 <li class="rank-des-li">
                                     <div class="row">
                                         <div class="col-2 m-1" id="controls"><button data-id="{{id}}" onclick="startStop({{id}});"><b>▶︎</b></button></div>
-                                        <div class="col-4 m-1" ><b>{{subject}}</b></div>
+                                        <div class="col-4 m-1" style="color:{{color}}"><b>{{subject}}</b></div>
                                 <div class="col-4 mt-1" id="controls">
-                                    <div id="timer_{{id}}"><b>{{studyTime}}</b></div>
+                                    <div id="timer_{{id}}" style="font-weight: bold">{{studyTime}}</div>
                                     <form id="form{{id}}" action="/studytime/upload/{{id}}" method="post">
                                         <input type="hidden" id="studyTime_{{id}}" name="studyTime" value="{{studyTime}}">
                                         <p class="text-error" id="nameErr"></p>
@@ -150,7 +119,7 @@
                     <div class="input-field mt-2">
                         <div class="input-group mb-3">
                             <input type="text" class="form-control" placeholder="할 일을 입력해주세요." aria-label="Recipient's username" aria-describedby="button-addon2">
-                            <button class="btn" style="background-color: #64C466; color: white;" type="button" id="button-addon2">+</button>
+                            <button class="btn add" style="background-color: #64C466; color: white;" type="button" id="button-addon2">+</button>
                         </div>
                     </div>
                 </div>
@@ -162,6 +131,7 @@
 <script src="/js/app/timer.js"></script>
 <script src="/js/app/todo.js"></script>
 <script src="/js/app/img.js"></script>
+<!--<script src="/js/app/dday.js"></script>-->
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/todo.css">
 {{>layouts/footer}}

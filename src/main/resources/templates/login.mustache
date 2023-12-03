@@ -1,25 +1,30 @@
 {{>layouts/header}}
 <div class="container mt-4">
     <div class="row justify-content-center">
-        <div class="col-md-6">
-            <div class="row" style="background-color:white;">
-                <div class="col-md-12">
+        <div class="col-md-6 login-form">
+            <div class="row">
+                <div class="int-area">
                     <br>
                     <h1>로그인</h1>
                     <br>
                     <form class="container" action="/member/login" method="post">
-                        <div class="mb-3">
-                            <label class="form-label">아이디</label>
-                            <input type="text" class="form-control" name="memberId">
+                        <div class="mb-3 int-area ">
+                            <div class="form-label ">
+                                <span class="fas fa-user"></span>
+                            </div>
+                            <input type="text" name="memberId" placeholder="아이디">
                         </div>
-                        <div class="mb-3">
-                            <label class="form-label">비밀번호</label>
-                            <input type="password" class="form-control" name="memberPw">
+                        <div class="mb-3 int-area ">
+                            <div class="form-label ">
+                                <span class="fas fa-lock"></span>
+                            </div>
+                            <input type="password" name="memberPw" placeholder="비밀번호">
                         </div>
-                        <br><br>
+                        <br>
                         <button type="submit" class="btn btn-primary" style="border-color: #64C466; background-color: #64C466; color: white; width: 100%;"> 로그인 </button>
-                        <div class="col-6">
-                            <span>회원이 아니신가요? <a href="/signup" style="color: grey; text-decoration: none;" type="button">회원가입</a></span>
+                        <br>
+                        <div>
+                            <span style="white-space: nowrap;">회원이 아니신가요? <a href="/signup" style="color: grey;" type="button">회원가입</a></span>
                         </div>
                     </form>
                 </div>
@@ -27,5 +32,5 @@
         </div>
     </div>
 </div>
-
+<link rel="stylesheet" href="/css/login.css">
 {{>layouts/footer}}

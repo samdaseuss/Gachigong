@@ -1,5 +1,5 @@
 .main {
-    height: 320px;
+    height: 370px;
     background: #fff;
     border: 1px solid #EDEDED;
     border-radius: 10px;
@@ -7,11 +7,11 @@
     position: relative;
 }
 .calendar img{
-    max-width: 100%;
-    max-height: 100%;
+    max-width: 100px;
+    max-height: 100px;
 }
 .date {
-   height: 650px;
+   height: 750px;
 }
 .container-fluid { max-width: 700px }
 img {
@@ -45,11 +45,13 @@ table {
 position: absolute;
     bottom: -100px;
 }
-.rank-des-ul {
+.rank-des-li {
     padding: 5px;
-    list-style:none inside;}
+    list-style:none;
+}
+
 .todo {
-       height: 310px;
+       height: 350px;
        position: relative;
        background: #fff;
        border: 1px solid #EDEDED;
@@ -62,4 +64,13 @@ position: absolute;
             max-height: 200px;
             height: 200px;
        }
+}
+
+#controls button {
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    background-color: #5A5A5A;
+    color: white;
+    border: none;
 }
