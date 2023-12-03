@@ -1,22 +1,24 @@
 package com.third.gachigong.service;
 
-import com.third.gachigong.dto.GroupMemberDto;
 import com.third.gachigong.entity.GroupEntity;
 import com.third.gachigong.entity.GroupMemberEntity;
 import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.repository.GroupMemberRepository;
+import com.third.gachigong.repository.GroupRepository;
 import com.third.gachigong.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.Optional;
 
 
 @Service
 @RequiredArgsConstructor
 public class GroupMemberService {
+    @Autowired
     private final GroupMemberRepository groupMemberRepository;
-    private final MemberRepository memberRepository;
 
     public boolean saveGroupMember(MemberEntity user, GroupEntity group, long userId, long groupId) {
         // 이미 가입된 멤버인지 확인
@@ -33,7 +35,18 @@ public class GroupMemberService {
             return true;
         }
     }
+
+
     public List<Object[]> findMemberDetailsByGroupId(long groupId) {
         return groupMemberRepository.findMemberDetailsByGroupId(groupId);
     }
+
+
+
+    // group에 해당하는 모든 유저 정보 조회
+    public List<GroupMemberEntity> getAllMembersByGroup(GroupEntity group) {
+        return groupMemberRepository.findByGroup(group);
+    }
+
+
 }

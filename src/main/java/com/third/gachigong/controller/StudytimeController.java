@@ -4,6 +4,7 @@ import com.third.gachigong.dto.StudytimeDto;
 import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.entity.StudytimeEntity;
 import com.third.gachigong.repository.StudytimeRepository;
+import com.third.gachigong.service.DdayService;
 import com.third.gachigong.service.MemberService;
 import com.third.gachigong.service.StudytimeService;
 import jakarta.servlet.http.HttpSession;
@@ -14,10 +15,10 @@ import org.springframework.ui.Model;
 import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
 
-import java.time.Duration;
 import java.time.LocalDate;
 import java.util.List;
 import java.util.stream.Collectors;
+import java.time.format.DateTimeFormatter;
 
 import static com.third.gachigong.controller.MemberController.addTimes;
 
@@ -26,6 +27,9 @@ import static com.third.gachigong.controller.MemberController.addTimes;
 public class StudytimeController {
     private final MemberService memberService;
     private final StudytimeService studytimeService;
+
+    @Autowired
+    private DdayService ddayService;
 
     @Autowired
     private StudytimeRepository studytimeRepository;
@@ -82,10 +86,41 @@ public class StudytimeController {
         log.info(saved.toString());
     }
 
-    @GetMapping("/calendar")
-    public String showNewGroupForm(Model model, HttpSession session) {
+//    @GetMapping("/calendar")
+//    public String showNewGroupForm(Model model, HttpSession session) {
+//        String userId = (String) session.getAttribute("loginId");
+//        if (userId != null) {
+//            MemberEntity memberEntity = memberService.findByMemberId(userId);
+//            List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(memberEntity).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
+//            model.addAttribute("lists", ddayService.getTodayDdays(memberEntity.getId()));
+//            model.addAttribute("today", LocalDate.now());
+//            model.addAttribute("totalTime", addTimes(studytimeEntities));
+//            model.addAttribute("timeList", studytimeEntities);
+//            return "calendar";
+//        } else {
+//            model.addAttribute("error", "로그인 후 이용해주세요.");
+//            return "login";
+//        }
+//    }
+
+    @GetMapping("/calendar/{date}")
+    public String showNewCalendar(@PathVariable String date, Model model, HttpSession session) {
+        log.info(date + "호출 됨!!");
         String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
+            MemberEntity user = memberService.findByMemberId(userId);
+
+            List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(user)
+                    .stream()
+                    .filter(s -> date.equals(s.getDate().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"))))
+                    .collect(Collectors.toList());
+
+            log.info(studytimeEntities.toString());
+            model.addAttribute("lists", ddayService.getTodayDdays(date, user.getId()));
+            model.addAttribute("today", LocalDate.now());
+            model.addAttribute("timeList", studytimeEntities);
+            model.addAttribute("totalTime", addTimes(studytimeEntities));
+
             return "calendar";
         } else {
             model.addAttribute("error", "로그인 후 이용해주세요.");

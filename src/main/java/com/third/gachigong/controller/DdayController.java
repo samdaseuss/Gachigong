@@ -8,9 +8,7 @@ import jakarta.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.ModelAttribute;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.time.format.DateTimeFormatter;
@@ -24,19 +22,19 @@ public class DdayController {
     private MemberService userService;
 
     @PostMapping("/dday")
-    public String saveDday(@ModelAttribute("dday") DdayEntity dday, Model model, HttpSession session){
+    public String saveDday(@ModelAttribute("dday") DdayEntity dday, HttpSession session){
         String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
             ddayService.saveDday(dday,user);
-            return "redirect:/calendar";
+            return "redirect:/calendar/" +  LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
         } else {
-            return "redirect:/login";
+            return "login";
         }
     }
 
     @PostMapping("/dday/{id}")
-    public String deleteDday(@PathVariable("id") Long id, HttpSession session ) {
+    public String deleteDday(@PathVariable("id") Long id,HttpSession session ) {
         String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
@@ -46,5 +44,4 @@ public class DdayController {
             return "login";
         }
     }
-
 }

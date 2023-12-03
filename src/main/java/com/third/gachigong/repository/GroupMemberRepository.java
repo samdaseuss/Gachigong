@@ -1,5 +1,6 @@
 package com.third.gachigong.repository;
 
+import com.third.gachigong.entity.GroupEntity;
 import com.third.gachigong.entity.GroupMemberEntity;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
@@ -13,4 +14,6 @@ public interface GroupMemberRepository extends JpaRepository<GroupMemberEntity, 
 
     @Query("SELECT gm FROM GroupMemberEntity gm INNER JOIN gm.member m WHERE gm.group.id = :groupId")
     List<Object[]> findMemberDetailsByGroupId(@Param("groupId") Long groupId);
+
+    List<GroupMemberEntity> findByGroup(GroupEntity group);
 }

@@ -8,8 +8,12 @@ import org.springframework.data.jpa.repository.Query;
 import org.springframework.data.repository.query.Param;
 
 import java.util.List;
+import java.util.Optional;
 
 public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
+
+    // 그룹 ID로 그룹 정보 조회
+    Optional<GroupEntity> findById(Long groupId);
 
     @Modifying
     @Transactional
@@ -17,10 +21,10 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
     void updateGroupOwner(@Param("userId") long userId, @Param("groupId") long groupId);
 
     @Query("SELECT g FROM GroupEntity g JOIN g.groupMembers gm WHERE gm.member.id = :userId")
-    List<GroupEntity> getGroupsByUserId( @Param("userId") long userId );
+    List<GroupEntity> getGroupsByUserId(@Param("userId") long userId);
 
     @Query("SELECT g FROM GroupEntity g JOIN g.groupOwner go WHERE go.id = :userId")
-    List<GroupEntity> findGroupInfoByUserId(@Param("userId") long userId );
+    List<GroupEntity> findGroupInfoByUserId(@Param("userId") long userId);
 
     @Modifying
     @Query("DELETE FROM GroupEntity g WHERE g.groupOwner.id = :userId AND g.id = :groupId")
@@ -31,5 +35,6 @@ public interface GroupRepository extends JpaRepository<GroupEntity, Long> {
 
     @Query("SELECT g FROM GroupEntity g WHERE g.id = :groupId AND g.groupPassword = :groupPw")
     GroupEntity findByGroupPw(@Param("groupId") Long groupId, @Param("groupPw") String groupPw);
+
 
 }
