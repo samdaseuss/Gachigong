@@ -22,6 +22,10 @@ public class DdayService {
         this.ddayRepository.save(ddayEntity);
     }
 
+    public void deleteDday(Long id, MemberEntity member) {
+        this.ddayRepository.deleteById(id);
+    }
+
     public List<DdayEntity> getDdayByToday(LocalDate localdate) {
         Instant instant = localdate.atStartOfDay(ZoneId.systemDefault()).toInstant();
         Date date = Date.from(instant);

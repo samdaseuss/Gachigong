@@ -9,7 +9,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.ModelAttribute;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
+
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
 
 @Controller
 public class DdayController {
@@ -31,6 +35,16 @@ public class DdayController {
         }
     }
 
-
+    @PostMapping("/dday/{id}")
+    public String deleteDday(@PathVariable("id") Long id, HttpSession session ) {
+        String userId = (String) session.getAttribute("loginId");
+        if (userId != null) {
+            MemberEntity user = userService.findByMemberId(userId);
+            ddayService.deleteDday(id,user);
+            return "redirect:/calendar/" + LocalDate.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd"));
+        } else {
+            return "login";
+        }
+    }
 
 }
