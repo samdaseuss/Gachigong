@@ -39,7 +39,6 @@ function startStop(id) {
         button.textContent = "▶︎";
         button.style.backgroundColor = "#5A5A5A";
         sendData(id);
-        location.reload(true);
     }
 }
 

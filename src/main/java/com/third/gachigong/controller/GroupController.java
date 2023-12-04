@@ -31,8 +31,6 @@ public class GroupController {
     @Autowired
     private GroupMemberService groupMemberService;
 
-    @Autowired
-    private StudytimeService studytimeService;
 
     @Autowired
     private StudytimeRepository studytimeRepository;
@@ -42,10 +40,10 @@ public class GroupController {
         String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
-            List<GroupEntity> myGroups = groupService.findGroupInfoByUserId(user.getId()),
-                    userGroups = groupService.getGroupsByUserId(user.getId()),
-                    groupList = groupService.getAllGroups();
-            List<Map<String, Object>> groupListData = new ArrayList<>();
+            List<GroupEntity> myGroups = groupService.findGroupInfoByUserId(user.getId()), // 내가 참여하고 있는 그룹 정보 담김
+                    userGroups = groupService.getGroupsByUserId(user.getId()), // 내가 만든 그룹 멤버 정보 담김
+                    groupList = groupService.getAllGroups(); // 모든 그룹 정보 담김
+            List<Map<String, Object>> groupListData = new ArrayList<>(); // 리스트에 맵 추가
             for (GroupEntity group : groupList) {
                 Map<String, Object> groupData = new HashMap<>();
                 groupData.put("groupData", Map.of(
@@ -53,11 +51,11 @@ public class GroupController {
                         "groupName", (group.getGroupName() != null) ? group.getGroupName() : "",
                         "groupIntro", (group.getGroupIntro() != null) ? group.getGroupIntro() : ""
                 ));
-                groupListData.add(groupData);
+                groupListData.add(groupData); // 가공된 맵 데이터 리스트에 추가
             }
             model.addAttribute("groupListData", groupListData)
-                    .addAttribute("userGroups", groupService.getGroupsByUserId(user.getId()))
-                    .addAttribute("myGroups", groupService.findGroupInfoByUserId(user.getId()));
+                    .addAttribute("userGroups", userGroups)
+                    .addAttribute("myGroups", myGroups);
             return "group";
         } else {
             model.addAttribute("error", "로그인 후 이용해주세요.");
@@ -114,10 +112,9 @@ public class GroupController {
     // 특정 그룹 정보 불러오기
     @GetMapping("/group/{groupId}")
     public String getOneGroup(@PathVariable Long groupId, Model model, HttpSession session) {
-        String userId = (String) session.getAttribute("loginId"); // 로그인 유저 정보
+        String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
-            // 시간이 나면 여기에다가 소유자가 클릭하면 바로 세부 그룹 정보 부르는 기능 추가
             GroupEntity group = groupService.findByGroupId(groupId);
             model.addAttribute("groupName", group.getGroupName());
             model.addAttribute("groupIntro", group.getGroupIntro());
@@ -132,7 +129,7 @@ public class GroupController {
     // 그룹 정보 체크 ( 그룹 패스워드 일치하는지 )
     @PostMapping("/group/{groupId}")
     public String validatepw(@PathVariable("groupId") Long groupId, @ModelAttribute("groupPassword") String groupPassword, RedirectAttributes redirectAttributes, Model model, HttpSession session) {
-        String userId = (String) session.getAttribute("loginId"); // 로그인 유저 정보
+        String userId = (String) session.getAttribute("loginId");
         if (userId != null) {
             MemberEntity user = userService.findByMemberId(userId);
             GroupEntity password = groupService.findByGroupPw(groupId,groupPassword);
@@ -140,11 +137,9 @@ public class GroupController {
                 redirectAttributes.addFlashAttribute("groupId", groupId);
                 boolean saveGroupMember = groupMemberService.saveGroupMember(user,password,user.getId(),groupId);
                 if(saveGroupMember == true) {
-                    System.out.println("성공");
                     model.addAttribute("success", "성공");
                     return "redirect:/dgroup";
                 } else {
-                    System.out.println("성공");
                     model.addAttribute("error", "이미 가입된 멤버입니다.");
                     return "redirect:/dgroup";
                 }
@@ -157,6 +152,7 @@ public class GroupController {
             return "login";
         }
     }
+
 
     // 세부 그룹 정보 불러오기
     @GetMapping("/dgroup")

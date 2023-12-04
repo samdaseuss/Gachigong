@@ -4,14 +4,11 @@ import com.third.gachigong.entity.GroupEntity;
 import com.third.gachigong.entity.GroupMemberEntity;
 import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.repository.GroupMemberRepository;
-import com.third.gachigong.repository.GroupRepository;
-import com.third.gachigong.repository.MemberRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 
 @Service

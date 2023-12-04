@@ -1,14 +1,12 @@
 package com.third.gachigong.service;
 
 import com.third.gachigong.entity.GroupEntity;
-import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.repository.GroupRepository;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

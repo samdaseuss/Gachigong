@@ -47,11 +47,12 @@ public class MemberController {
 
 
     @GetMapping("/login")
-    public String loginForm(){
+    public String loginForm() {
         return "login";
     }
+
     @GetMapping("/signup")
-    public String signupForm(){
+    public String signupForm() {
         return "signup";
     }
 
@@ -67,10 +68,10 @@ public class MemberController {
     }
 
     @PostMapping("/member/login")
-    public String login(@ModelAttribute MemberDto memberDto, HttpSession session, Model model){
+    public String login(@ModelAttribute MemberDto memberDto, HttpSession session, Model model) {
         log.info(memberDto.toString());
         MemberDto loginResult = memberService.login(memberDto);
-        if(loginResult != null){
+        if (loginResult != null) {
             //세션 기능
             session.setAttribute("loginId", loginResult.getMemberId());
 
@@ -85,14 +86,14 @@ public class MemberController {
             model.addAttribute("userGroups", groupService.getGroupsByUserId(memberEntity.getId()));
             model.addAttribute("timeList", studytimeEntities);
             return "main";
-        }else {
+        } else {
             return "login";
         }
     }
 
     public static String addTimes(List<StudytimeEntity> studytimeEntities) {
         ArrayList<String> times = new ArrayList<>();
-        for (StudytimeEntity s : studytimeEntities){
+        for (StudytimeEntity s : studytimeEntities) {
             times.add(s.getStudyTime());
         }
         int totalHours = 0;
@@ -124,16 +125,13 @@ public class MemberController {
     @GetMapping("/")
     public String main(Model model, HttpSession session) {
         String userId = (String) session.getAttribute("loginId");
-
         if (userId != null) {
             MemberEntity user = memberService.findByMemberId(userId);
             List<GroupEntity> userGroups = groupService.getGroupsByUserId(user.getId());
             List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(user).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
-            List<DdayEntity> todayDdays = ddayService.getTodayDdaysMain(user.getId());
             List<Map<String, String>> ddayList = ddayService.calculateAndPrintAllDdays(user.getId());
             model.addAttribute("ddayList", ddayList);
-            model.addAttribute("todayDdays", todayDdays);
-            model.addAttribute("userGroups", groupService.getGroupsByUserId(user.getId()));
+            model.addAttribute("userGroups", userGroups);
             model.addAttribute("timeList", studytimeEntities);
             model.addAttribute("today", LocalDate.now());
             model.addAttribute("totalTime", addTimes(studytimeEntities));
@@ -144,7 +142,7 @@ public class MemberController {
     }
 
     @GetMapping("/member/logout")
-    public String logout(HttpSession session){
+    public String logout(HttpSession session) {
         session.invalidate();
         return "login";
     }

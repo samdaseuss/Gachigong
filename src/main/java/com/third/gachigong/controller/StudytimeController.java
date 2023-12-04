@@ -5,6 +5,7 @@ import com.third.gachigong.entity.MemberEntity;
 import com.third.gachigong.entity.StudytimeEntity;
 import com.third.gachigong.repository.StudytimeRepository;
 import com.third.gachigong.service.DdayService;
+import com.third.gachigong.service.GroupService;
 import com.third.gachigong.service.MemberService;
 import com.third.gachigong.service.StudytimeService;
 import jakarta.servlet.http.HttpSession;
@@ -17,6 +18,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 import java.util.stream.Collectors;
 import java.time.format.DateTimeFormatter;
 
@@ -34,6 +36,8 @@ public class StudytimeController {
     @Autowired
     private StudytimeRepository studytimeRepository;
 
+    @Autowired
+    private GroupService groupService;
     @Autowired
     public StudytimeController(MemberService memberService, StudytimeService studytimeService) {
         this.memberService = memberService;
@@ -68,8 +72,10 @@ public class StudytimeController {
 
         // DB에서 데이터 가져오기
         List<StudytimeEntity> studytimeEntities = studytimeRepository.findByMember(memberEntity).stream().filter(s -> LocalDate.now().equals(s.getDate())).collect(Collectors.toList());
-
+        List<Map<String, String>> ddayList = ddayService.calculateAndPrintAllDdays(memberEntity.getId());
+        model.addAttribute("ddayList", ddayList);
         model.addAttribute("today", LocalDate.now());
+        model.addAttribute("userGroups", groupService.getGroupsByUserId(memberEntity.getId()));
         model.addAttribute("totalTime", addTimes(studytimeEntities));
         model.addAttribute("timeList", studytimeEntities);
         return "main";

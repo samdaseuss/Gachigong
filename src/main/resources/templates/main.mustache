@@ -10,7 +10,7 @@
                         <tr><td>
                             <div class="main-dday col-md-12">
                                 {{#ddayList}}
-                                    <div>D-<b id="originalDate">{{ddayValue}}</b>{{ddayContent}}</div>
+                                    <div><b style="font-weight:600">D-</b><b id="originalDate" style="font-weight:600">{{ddayValue}}</b>&nbsp{{ddayContent}}</div>
                                 {{/ddayList}}
                             </div>
                         </td></tr>
@@ -25,45 +25,43 @@
                         <div class="mt-2">
                             <h3> 과목별 공부시간</h3>
                         </div>
-                        <img src="/img/img_3.png" alt="">
+                        <div style="text-align:center; height:280px">
+                            <img  src="/img/studytime/sixh.png" alt="">
+                        </div>
                     </div>
-                        <div class="timer-list">
-                            <div class="container">
-                                <div class="row">
-                                    <div class="col-md-3"></div>
-                                </div>
+                    <div class="timer-list">
+                        <div class="container">
+                            <div class="row">
+                                <div class="col-md-3"></div>
                             </div>
-                                {{#timeList}}
-                                <li class="rank-des-li">
-                                    <div class="row">
-                                        <div class="col-2 m-1" id="controls"><button data-id="{{id}}" onclick="startStop({{id}});"><b>▶︎</b></button></div>
-                                        <div class="col-4 m-1" style="color:{{color}}"><b>{{subject}}</b></div>
-                                <div class="col-4 mt-1" id="controls">
-                                    <div id="timer_{{id}}" style="font-weight: bold">{{studyTime}}</div>
-                                    <form id="form{{id}}" action="/studytime/upload/{{id}}" method="post">
-                                        <input type="hidden" id="studyTime_{{id}}" name="studyTime" value="{{studyTime}}">
-                                        <p class="text-error" id="nameErr"></p>
-                                        <p id="globalErr" class="text-error"></p>
-                                    </form>
-                                </div>
+                        </div>
+                        {{#timeList}}
+                            <li class="rank-des-li">
+                                <div class="row">
+                                    <div class="col-2 m-1" id="controls"><button id="sbm-btn" data-id="{{id}}"><b>▶︎</b></button></div>
+                                    <div class="col-4 m-1" style="color:{{color}}"><b>{{subject}}</b></div>
+                                    <div class="col-4 mt-1" id="controls">
+                                        <div id="timer_{{id}}" style="font-weight: bold">{{studyTime}}</div>
+                                        <form id="form{{id}}" action="/studytime/upload/{{id}}" method="post">
+                                            <input type="hidden" id="studyTime_{{id}}" name="studyTime" value="{{studyTime}}">
+                                            <p class="text-error" id="nameErr"></p>
+                                            <p id="globalErr" class="text-error"></p>
+                                        </form>
                                     </div>
-                                </li>
-                                {{/timeList}}
-                        </div>
+                                </div>
+                            </li>
+                        {{/timeList}}
+                    </div>
                     <form class="container" action="/studytime/add" method="post">
-                        <div class="mb-1 row">
-                            <label class="col-3 col-form-label ml-1" style="font-size:15px">과목</label>
-                            <div class="col-9"><input type="text" class="form-control" name="subject"></div>
-                        </div>
-                        <div class="mb-1 row">
-                            <label class="col-3 col-form-label" style="font-size:15px">색상</label>
-                            <div class="col-9"><input type='color' class="form-control" name="color" value='#0000ff'></div>
+                        <div class="mb-1 mt-2 row">
+                            <div class="col-10"><input type="text" class="form-control" name="subject" placeholder="과목이름"></div>
+                            <div class="col-2" ><input type='color' class="form-control style1" name="color" value='#0000ff'></div>
                         </div>
                         <button class="btn btn-primary d-grid gap-2 mt-2" style="border-color: #64C466; background-color: #64C466; color: white; width: 100%;" type="submit">+</button>
                     </form>
-                    </div>
                 </div>
             </div>
+        </div>
         <div class="col-md-4">
             <div class="col-md-12">
                 <div class="main">
@@ -131,7 +129,6 @@
 <script src="/js/app/timer.js"></script>
 <script src="/js/app/todo.js"></script>
 <script src="/js/app/img.js"></script>
-<!--<script src="/js/app/dday.js"></script>-->
 <link rel="stylesheet" href="/css/main.css">
 <link rel="stylesheet" href="/css/todo.css">
 {{>layouts/footer}}
