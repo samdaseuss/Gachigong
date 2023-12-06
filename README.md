@@ -8,7 +8,7 @@
 <img src="./img/gachigong.png" />
 
 ## 데이터 모델 다이어그램 (ERD)
-<img width="200" src="./img/erd.png" />
+<img width="300" src="./img/erd.png" />
 
 ## 개발환경
 - JAVA 17
