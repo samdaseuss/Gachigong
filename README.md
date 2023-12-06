@@ -14,6 +14,9 @@
 - JAVA 17
 - MySQL 8.1.0
 
+## 기술스택
+- Spring Boot 3.1.5
+
 ## 세부 페이지 설명
 ### 메인 페이지 ( 홈 화면 )
 <img width="400" src="./img/gachigong_main.png" />
