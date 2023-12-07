@@ -13,6 +13,7 @@
 ## 개발환경
 - JAVA 17
 - MySQL 8.1.0
+- MacOS Ventura 13.5
 
 ## 기술스택
 - Spring Boot 3.1.5
