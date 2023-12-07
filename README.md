@@ -14,6 +14,7 @@
 - JAVA 17
 - MySQL 8.1.0
 - MacOS Ventura 13.5
+- IntelliJ IDEA 2023.2.4 (Community Edition)
 
 ## 기술스택
 - Spring Boot 3.1.5
