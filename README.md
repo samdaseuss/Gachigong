@@ -11,7 +11,7 @@
 <img width="400" src="./img/erd.png" />
 
 ## 개발환경
-- JAVA 17
+- JAVA 17 (openjdk 17.0.8.1)
 - MySQL 8.1.0
 - MacOS Ventura 13.5
 - IntelliJ IDEA 2023.2.4 (Community Edition)
