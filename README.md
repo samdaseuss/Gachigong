@@ -19,6 +19,7 @@
 ## 기술 스택
 - Spring Boot 3.1.5
 - JPA 3.1.5
+- mustache 3.1.5
 - Lombok 1.18.30
 - Gradle 8.4
 
